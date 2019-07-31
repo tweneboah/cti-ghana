@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express()
-
+//Routes
+const userRouter = require('./routes/api/users/users')
 
 //DB CONNECTION
 mongoose.connect('mongodb://localhost/CTI-Ghana', {
@@ -11,14 +12,17 @@ mongoose.connect('mongodb://localhost/CTI-Ghana', {
     })
     .then(() => console.log("DB Connected successfully"));
 
+//MIDDLEWARE
+app.use(express.json({ extended: false }));
 
 
+
+//ROUTES
+app.use('/api', userRouter)
 
 
 //SERVER
-app.get('/', (req, res) => {
- res.json({project: 'Develped by Emma'})
-})
+
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

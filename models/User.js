@@ -4,14 +4,17 @@ const userSchema = new  mongoose.Schema({
  firstName: String,
  lastName: String,
  otherName: String,
- dateOfBirth:  Date,
+ dateOfBirth:  String,
  country: String,
+ email: String,
+ password: String,
+ phoneNumber: String,
  region: String,
  city: String,
- jobDescription: String,
- passportId: String,
- votersId: String,
- visaId: String
+ jobType: String,
+ passportNo: String,
+ visaNo: String,
+ profilePhoto: String
 })
 
 const User = mongoose.model('User', userSchema);
