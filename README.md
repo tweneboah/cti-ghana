@@ -1,5 +1,5 @@
 # cti-ghana
-This is a project to manage (ESL resources, Money Transfer, welfare) Ghanaians Teachers in China
+This is a project to manage ESL resources, Money Transfer, welfare of Ghanaians Teachers in China
 
 # Contributor Covenant Code of Conduct
 ## Our Pledge
