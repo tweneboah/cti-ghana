@@ -14,7 +14,8 @@ const userSchema = new  mongoose.Schema({
  jobType: String,
  passportNo: String,
  visaNo: String,
- profilePhoto: String
+ profilePhoto: String,
+ verified: Boolean
 })
 
 const User = mongoose.model('User', userSchema);
