@@ -108,4 +108,17 @@ userRouter.post('/users/login', async(req, res) => {
     }
 })
 
+
+//Get My Profile
+
+userRouter.get('/users/me', auth, async (req, res) => {
+   try {
+       const myProfile =  await User.findById(req.user.id)
+        res.json({
+          myProfile: myProfile
+       })
+   } catch (error) {
+       console.log(error)
+   }
+})
 module.exports = userRouter;
