@@ -5,55 +5,52 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const auth = require('../../../middleware/auth')
 
 //Register user
 userRouter.post('/users', async (req, res) => {
    try {
-    //destructure
-    // const { firstName, lastName, otherName, dateOfBirth, country, region, city, jobType, votersIdNo, votersIdNo, profilePhoto, email, phoneNumber, password } = req.body
+         //destructure
+         const { firstName, lastName, otherName, dateOfBirth, country, region, city, jobType, votersIdNo, passportNo, email, password, phoneNumber, visaNo, profilePhoto } = req.body
 
+         //Check if user exist
+         let user = await User.findOne({email: email});
+         if(user){
+         return res.status(400).json({errors : [{msg: 'User already exist'}]})
+         }
 
-    const { firstName, lastName, otherName, dateOfBirth, country, region, city, jobType, votersIdNo, passportNo, email, password, phoneNumber, visaNo, profilePhoto } = req.body
+         //Create avatar 
+         const avatar = gravatar.url(email, {
+         s: '200',
+         r: 'pg',
+         d: 'mm'
+         });
 
+         //Create the user
 
+         user = new User(
+            {firstName, lastName, otherName, dateOfBirth, country, region, city, jobType, votersIdNo, passportNo, email, password, phoneNumber, visaNo, profilePhoto, avatar}
+            )
+      
 
-    //Check if user exist
-    let user = await User.findOne({email: email});
-    if(user){
-     return res.status(400).json({errors : [{msg: 'User already exist'}]})
-    }
+         //Encrypt password
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
 
-    const avatar = gravatar.url(email, {
-     s: '200',
-     r: 'pg',
-     d: 'mm'
-   });
+      await user.save();
 
-   //Create the user
-
-   user = new User(
-      {firstName, lastName, otherName, dateOfBirth, country, region, city, jobType, votersIdNo, passportNo, email, password, phoneNumber, visaNo, profilePhoto, avatar}
-      )
- 
-
-   //Encrypt password
-const salt = await bcrypt.genSalt(10);
-user.password = await bcrypt.hash(password, salt);
-
-await user.save();
-
-  return res.json({
-   user: user
-  })
+      return res.json({
+         user: user
+      })
 
    } catch (error) {
-    console.log(error.message)
+         console.log(error.message)
    }
 });
 
 
 //GET ALL USERS
-userRouter.get('/users',  async (req, res) => {
+userRouter.get('/users', auth, async (req, res) => {
    try {
       const users = await User.find();
       return res.json({
