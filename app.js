@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express()
 //Routes
-const userRouter = require('./routes/api/users/users')
+const userRouter = require('./routes/api/transferMoney/users/users')
 
 //DB CONNECTION
 mongoose.connect('mongodb://localhost/CTI-Ghana', {
@@ -14,7 +14,6 @@ mongoose.connect('mongodb://localhost/CTI-Ghana', {
 
 //MIDDLEWARE
 app.use(express.json({ extended: false }));
-
 
 
 //ROUTES

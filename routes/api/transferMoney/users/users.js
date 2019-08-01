@@ -1,11 +1,11 @@
 const express = require('express');
 const userRouter = express.Router();
-const User = require('../../../models/User');
+const User = require('../../../../models/moneyTransfer/User');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const auth = require('../../../middleware/auth')
+const auth = require('../../../../middleware/auth')
 
 //Register user
 userRouter.post('/users', async (req, res) => {
