@@ -1,4 +1,4 @@
 {
  "mongoURI": "mongodb+srv://emmanuel:emmanuel@my-budget-app-ujlhm.mongodb.net/My-Budget-App",
- "jwtSecret":"mysecret"
+ "jwtSecret":"mysecretIsNoandYes"
 }
