@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+  
+
+<div class="container">  
+   <div class='row justify-content-center'>
+      <div class='col-lg-5 col-md-12'>
+  <form action="/posts" method="POST" id="contact">
+    <h3>Create a Post</h3>
+    <fieldset>
+      <input class ='form-control' name='name' placeholder="Post Title" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input class ='form-control' name='image' placeholder=" image url" type="text" tabindex="2" required>
+    </fieldset>
+ 
+    <fieldset>
+      <textarea class ='form-control' name='description' placeholder="Type your message here...." tabindex="5" required></textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+    <p class="copyright">Developed by <a href="/" target="_blank" title="Emma">Emma</a></p>
+  </form>
+
+  </div>
+         
+
+</div>
+</div>
+<% include ../partials/footer %>
+
