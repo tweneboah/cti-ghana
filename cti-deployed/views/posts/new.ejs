@@ -1,5 +1,5 @@
-<% include ../partials/header %>
-  <link rel="stylesheet" href="/stylesheets/registrationForm.css">
+
+  <%# <link rel="stylesheet" href="/stylesheets/registrationForm.css">
 
 <div class="container">  
    <div class='row justify-content-center'>
@@ -26,6 +26,44 @@
          
 
 </div>
-</div>
+</div> %>
+
+
+
+
+
+
+
+<% include ../partials/header %>
+    <div class="row">
+        <h1 style="text-align: center">Create a New Post</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/posts" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="post[name]" placeholder="name">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="psot[description]" placeholder="description">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+            </form>
+            <a href="/posts">Go Back</a>
+        </div>
+    </div>
+
+
 <% include ../partials/footer %>
+
+
+
+
+
+
+
 

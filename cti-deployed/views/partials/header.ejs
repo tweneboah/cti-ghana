@@ -5,13 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
-
 <link rel="stylesheet" href="/stylesheets/navBar.css">
 <link rel="stylesheet" href="/stylesheets/login.css">
+<link rel="stylesheet" href="/stylesheets/footer.css">
 
-  <!--CUSTOME CSS-->
-
+ 
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,13 +27,61 @@
   
     <body>
 
-
-
-
-    <nav class="navbar navbar-expand-lg bg-primary px-4">
+  <%if(!currentUser) {%>
+    <nav class="navbar navbar-expand-lg navbar-background px-4">
   
       <a href="/" class="navbar-brand">
         <%# <img src="img/logo.svg" alt="main icon"> %>
+        CTI
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
+        <span class="toggler-icon">
+          <i class="fas fa-bars"></i>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="navbar-nav text-capitalize mx-auto">
+          <li class="nav-item active">
+            <a href="/" class="nav-link">home</a>
+          </li>
+
+        
+          <li class="nav-item active">
+            <a href="/posts/new" class="nav-link">Create Post</a>
+          </li>
+          <li class="nav-item active">
+            <a href="/posts" class="nav-link">Posts</a>
+          </li>
+          <li class="nav-item active">
+            <a href="/register" class="nav-link">Register</a>
+          </li>
+
+           <li class="nav-item active">
+            <a href="/login" class="nav-link">Login</a>
+          </li>
+
+          
+        </ul>
+        <div class="nav-info-items d-none d-lg-flex">
+          <!-- single info -->
+          <div class="nav-info align-items-center d-flex justify-content-between mx-lg-5">
+            <span class="info-icon mx-lg-3">
+              <i  class="fas fa-phone text-white"></i>
+            </span>
+            <p class="mb-0 text-white">Hotline: +8613051803767 </p>
+          </div>
+          <!-- single info -->
+        
+        </div>
+      </div>
+    </nav>
+
+  <%}else{%>
+
+        <nav class="navbar navbar-expand-lg navbar-background px-4">
+  
+      <a href="/" class="navbar-brand">
+
         CTI
       </a>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
@@ -60,16 +106,20 @@
           </li>
 
            <li class="nav-item active">
-            <a href="login" class="nav-link">Login</a>
+            <a href="/login" class="nav-link">Login</a>
+          </li>
+
+           <li class="nav-item active">
+            <a href="/logout" class="nav-link">Logout</a>
           </li>
         </ul>
         <div class="nav-info-items d-none d-lg-flex">
           <!-- single info -->
           <div class="nav-info align-items-center d-flex justify-content-between mx-lg-5">
             <span class="info-icon mx-lg-3">
-              <i class="fas fa-phone"></i>
+              <i  class="fas fa-phone text-white"></i>
             </span>
-            <p class="mb-0">+ 8613051803767 </p>
+            <p class="mb-0 text-white"> + 8613051803767 </p>
           </div>
           <!-- single info -->
           <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5">
@@ -80,21 +130,23 @@
               <span id="item-count">You</span>
               have loggin as 
               <span class="item-total">
-                .....Emmanuel
+                <%=currentUser.username%>
               </span>
             </p>
           </div>
         </div>
       </div>
     </nav>
-    <!-- end of nav -->
+
+  <%}%>
+
+  
    
- 
-  <!-- end of heder -->
-
-
+         <!-- Error Displaying using Flash -->  
 
         <div class="container">
+          <div class='row'>
+           <div class='col m-3 text-center'>
         <% if(error && error.length > 0){ %>
             <div class="alert alert-danger" role="alert">
                 <%= error %>
@@ -105,5 +157,7 @@
                 <%= success %>
             </div>
         <% } %>
+            </div>
+        </div>
     </div>
     

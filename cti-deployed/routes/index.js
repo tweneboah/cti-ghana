@@ -4,14 +4,6 @@ const passport = require('passport');
 const User = require('../models/user')
 
 
-//middleware
-function isLoggedIn(req, res, next){
- if(req.isAuthenticated()){
-     return next();
- }
- res.redirect("/login");
-}
-
 //============
  // REGISTER USER
  //Show form
@@ -39,12 +31,14 @@ router.post('/register', (req, res) => {
 
 //Login form
 router.get('/login', (req, res) => {
+ 
   res.render('login')
+  req.flash('success', 'Login successful')
 })
 
 //Login logic
 router.post('/login',passport.authenticate('local', {
-  successRedirect: '/posts',
+  successRedirect: '/about',
   failureRedirect: '/login'
 }) , (req, res) => {
   

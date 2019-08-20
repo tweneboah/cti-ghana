@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -5,7 +6,8 @@ const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const Campground = require('./models/post');
 const Comment = require('./models/comment');
-const User = require('./models/user')
+const User = require('./models/user');
+const middleware = require('./middleware/index')
 //const seed = require('./seed');
 const passport = require('passport');
 const LocalStrategy = require('passport-local')
@@ -30,13 +32,6 @@ app.use(flash());
 //======================
 // DB CONNECTION
 //==============
-
-// mongoose.connect('mongodb://localhost/CTI', {
-//  useNewUrlParser: true,
-//  useCreateIndex: true,
-//  useFindAndModify: false
-// })
-// .then(() => console.log("DB Connected successfully"));
 
 
 const url = process.env.DATABASEURL || 'mongodb://localhost/CTI-Ghana'
@@ -69,22 +64,12 @@ passport.deserializeUser(User.deserializeUser());
 //Passing the authenticated user - req.user to every routs
 app.use(function(req, res, next) {
     //Whatever we put into res.local is what available in our templates
-    res.locals.currentUser = req.user;
+    res.locals.currentUser = req.user; 
     res.locals.error = req.flash('error') //.error holds all the error message in our routes.Anywhere i placed <%=error%> it will display all the messages inside the error variable in our  routes
    res.locals.success = req.flash('success') ///.success holds all the success message in our routes  
     next()
 
 })
-//IsLogin middleware to protect routes
-
-const IsLoggedIn = (req, res, next) => {
-    
-    if(req.isAuthenticated()){
-        return next()
-    }else {
-        res.redirect('/login')
-    }
-}
 
 //====================
 // HOME PAGE
@@ -95,7 +80,7 @@ app.get("/", function(req, res){
 });
 
 //ABOU US
-app.get('/about', (req, res) => {
+app.get('/about', middleware.isLogin ,(req, res) => {
      res.render('about')
 })
 

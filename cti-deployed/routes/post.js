@@ -1,21 +1,50 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/post')
+const Post = require('../models/post');
+const middleware = require('../middleware/index')
 
-//middleware
-function isLoggedIn(req, res, next){
- if(req.isAuthenticated()){
-     return next();
- }
- req.flash('error', "Pleas login")
- res.redirect("/login");
-}
+//============
+//CLOUDINARY
+var multer = require('multer');
+var storage = multer.diskStorage({
+  filename: function(req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter})
+
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+  cloud_name: process.env.CLOUDINARY_NAME || 'tweneboah2',
+  api_key: process.env.CLOUDINARY_API_KEY || '229991984126729',
+  api_secret: process.env.CLOUDINARY_API_SECRET || 'ZlWFWOAedcc8vt340kh0vJxqT9g'
+});
+//==============
+
+
+
+
+// //middleware
+// function isLoggedIn(req, res, next){
+//  if(req.isAuthenticated()){
+//      return next();
+//  }
+//  req.flash('error', "Pleas login")
+//  res.redirect("/login");
+// }
 
 
 //GET FORM
-router.get("/new", isLoggedIn, function(req, res){
+router.get("/new", function(req, res){
  
- res.render("posts/new.ejs"); 
+    res.render('posts/new')
 });
 
 
@@ -41,29 +70,57 @@ router.get('/', (req, res) => {
 // CREATE CAMPGROUNDS
 //============================
 
-router.post("/",isLoggedIn ,function(req, res){
- // get data from form and add to campgrounds array
- var name = req.body.name;
- var image = req.body.image;
- let desc = req.body.description
+// router.post("/",isLoggedIn, upload.single('image'),function(req, res){
+//  // get data from form and add to campgrounds array
+//  var name = req.body.name;
+//  var image = req.body.image;
+//  let desc = req.body.description
 
- //This must be the same as field in the model
- let author = {
-     id: req.user.id,
-     username: req.user.username
- }
- var newPost = {name: name, image: image, description: desc, author: author}
+//  //This must be the same as field in the model
+//  let author = {
+//      id: req.user.id,
+//      username: req.user.username
+//  }
+//  var newPost = {name: name, image: image, description: desc, author: author}
 
- //Create a new campground and save to DB
- Post.create(newPost, (err, newlyCreatedPost) => {
-     if(err){
-         //console.log(err)
-     }else {
+//  //Create a new campground and save to DB
+//  Post.create(newPost, (err, newlyCreatedPost) => {
+//      if(err){
+//          //console.log(err)
+//      }else {
         
-         res.redirect('/posts')
-     }
- })
+//          res.redirect('/posts')
+//      }
+//  })
  
+// });
+
+
+
+router.post("/", middleware.isLogin, upload.single('image'), function(req, res) {
+    cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+      if(err) {
+        req.flash('error', err.message);
+        return res.redirect('back');
+      }
+      // add cloudinary url for the image to the campground object under image property
+      req.body.post.image = result.secure_url;
+      // add image's public_id to campground object
+      req.body.post.imageId = result.public_id;
+      // add author to campground
+      req.body.post.author = {
+        id: req.user._id,
+        username: req.user.username
+      }
+      Post.create(req.body.post, function(err, post) {
+        if (err) {
+          req.flash('error', err.message);
+          return res.redirect('back');
+        }
+        req.flash('success', 'Post was created successfully');
+        res.redirect('/posts/' + post.id);
+      });
+    });
 });
 
 //=================

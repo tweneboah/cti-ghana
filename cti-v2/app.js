@@ -94,6 +94,10 @@ app.get("/", function(req, res){
     res.render("landing");
 });
 
+//ABOU US
+app.get('/about', (req, res) => {
+     res.render('about')
+})
 
 
 

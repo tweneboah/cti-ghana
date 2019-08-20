@@ -10,7 +10,7 @@
   color: #ef7998;
 }
 .nav-link {
-  color: #e0c7ce;
+  color: #ef7998;
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
   font-size: 20px;
@@ -18,18 +18,16 @@
 }
 
 .cart-info {
-  border: 1.6px solid rgb(224, 221, 221);
-  border: 0.1rem solid rgb(224, 220, 220);
-  color: rgb(198, 223, 130);
+  border: 1.6px solid #000;
+  border: 0.1rem solid #000;
+  color: #000;
   border-radius: 0.25rem;
   padding: 6.4px 9.6px;
   padding: 0.4rem 0.6rem;
   cursor: pointer;
 }
 
-.navbar-background {
-  background: #CC5226
-}
+
 
 
 
