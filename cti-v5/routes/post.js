@@ -5,22 +5,22 @@ const middleware = require('../middleware/index')
 
 //============
 //CLOUDINARY
-var multer = require('multer');
-var storage = multer.diskStorage({
+const multer = require('multer');
+const storage = multer.diskStorage({
   filename: function(req, file, callback) {
     callback(null, Date.now() + file.originalname);
   }
 });
-var imageFilter = function (req, file, cb) {
+const imageFilter = function (req, file, cb) {
     // accept image files only
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
         return cb(new Error('Only image files are allowed!'), false);
     }
     cb(null, true);
 };
-var upload = multer({ storage: storage, fileFilter: imageFilter})
+const upload = multer({ storage: storage, fileFilter: imageFilter})
 
-var cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary');
 cloudinary.config({ 
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY, 
@@ -54,13 +54,14 @@ router.get("/new", function(req, res){
 
 router.get('/', (req, res) => {
  //Get All campgrounds from DB
- console.log('Index Route', req.user)
+ 
  Post.find({}, (err, allPosts)=> {
      if(err){
          console.log(err)
      }else {
          
          res.render('posts/index', {posts: allPosts, currentUser: req.user})
+         console.log('CurremtUser', req.user )
      }
  })
 })

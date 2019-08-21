@@ -1,0 +1,47 @@
+
+/*#############################banner icons################################*/
+
+.title .fa {
+ font-size: 60px;
+ color: #f15025;
+}
+
+.title .title-text {
+ padding-left: 15px;
+ border-left: 3px solid #ced0ce;
+}
+
+/*############################services#########################################*/
+
+#services .service-icon {
+ font-size: 60px;
+ color: #f5f3f5;
+ padding: 60px;
+ background-color: #f15025;
+ clip-path: polygon(0 100%, 50% 0, 100% 100%)
+}
+
+#services .service-icon:hover {
+ background-color: rgba(0, 0, 0, 0.6);
+ color: #f15025;
+}
+
+#services .service-icon-1 {
+ clip-path: polygon(0 100%, 50% 0, 100% 100%)
+}
+
+#services .service-icon-2 {
+ clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
+
+}
+
+#services .service-icon-3 {
+ clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+#services .service-icon-4 {
+ -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+ clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+
