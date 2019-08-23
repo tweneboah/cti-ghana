@@ -11,10 +11,12 @@
                       <div class="card-body text-center">
                       <h5 class="card-title mb-0"> Username: <%=user.username%></h5>
                       <div class="card-text text-black-50">Firstname: <%=user.firstName%></div>
+                       <div class="card-text text-black-50">Lastname: <%=user.lastName%></div>
+                        <div class="card-text text-black-50">Verified: <%=user.isVerified%></div>
 
                       
                    <p>
-                       <a href="" class="btn btn-primary">View my Profile</a>
+                       <a href="/profile/<%=user.id%>" class="btn btn-primary">View my Profile</a>
                    </p>
          </div>
                 </div>  
