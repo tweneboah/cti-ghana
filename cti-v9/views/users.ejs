@@ -1,0 +1,28 @@
+<% include partials/header %>
+
+
+<div class="container-fluid">
+      <div class="row mt-3">
+          <% users.forEach(function(user){ %>
+                <div class="col-lg-4 col-md-12">
+                   <div class="card border-0 shadow">
+                      <img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">
+
+                      <div class="card-body text-center">
+                      <h5 class="card-title mb-0"> Username: <%=user.username%></h5>
+                      <div class="card-text text-black-50">Firstname: <%=user.firstName%></div>
+
+                      
+                   <p>
+                       <a href="" class="btn btn-primary">View my Profile</a>
+                   </p>
+         </div>
+                </div>  
+                 </div >
+        <% }); %>
+    </div>
+    </div>
+      
+
+
+<% include partials/footer %>
