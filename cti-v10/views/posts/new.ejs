@@ -1,0 +1,112 @@
+
+  <%# <link rel="stylesheet" href="/stylesheets/registrationForm.css">
+
+<div class="container">  
+   <div class='row justify-content-center'>
+      <div class='col-lg-5 col-md-12'>
+  <form action="/posts" method="POST" id="contact">
+    <h3>Create a Post</h3>
+    <fieldset>
+      <input  name='name' placeholder="Post Title" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input  name='image' placeholder=" image url" type="text" tabindex="2" required>
+    </fieldset>
+ 
+    <fieldset>
+      <textarea  name='description' placeholder="Type your message here...." tabindex="5" required></textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+    <p class="copyright">Developed by <a href="/" target="_blank" title="Emma">Emma</a></p>
+  </form>
+
+  </div>
+         
+
+</div>
+</div> %>
+
+
+
+
+
+
+
+<% include ../partials/header %>
+     <div class="row">
+        <h1 style="text-align: center">Create a New Post</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/posts" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="post[name]" placeholder="name">
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" type="text" name="post[videoLink]" placeholder="Video Url">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" accept="image/pdf/*" >
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" type="text" name="post[description]" placeholder="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+            </form>
+            <a href="/posts">Go Back</a>
+        </div>
+    </div>
+ 
+
+
+
+
+ <%# <div class="main bgImage">
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form action='/posts' method='POST' id="signup-form" class="signup-form" enctype="multipart/form-data">
+                        <h2 class="form-title">Create Post</h2>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="post[name]" id="name" placeholder="Post title"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file" id="image" name="image" accept="image/*" required id="name" />
+                        </div>
+
+                       <div class="form-group">
+                            <textarea type="text" class="form-input" name="post[description]" id="name" placeholder="Description"></textarea>
+                        </div>
+                        
+                         
+                         <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
+                        </div> 
+                        
+                    </form>
+                    <p class="loginhere">
+                         Already have an account ? <a href="/login" class="loginhere-link">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div> %>
+
+
+<% include ../partials/footer %>
+
+
+
+
+
+
+
+
