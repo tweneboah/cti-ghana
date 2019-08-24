@@ -126,6 +126,17 @@ router.get('/users', (req, res) => {
 });
 
 
+router.get('/team', (req, res) => {
+  //res.set('Content-Type', 'image/jpg')
+    User.find({}, (err, allUsers) => {
+        if(err){
+          console.log(err)
+        }else {
+          console.log(allUsers)
+        res.render('team.ejs', {users: allUsers})
+        }
+    })
+});
 
 
 

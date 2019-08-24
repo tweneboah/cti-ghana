@@ -6,11 +6,11 @@
       <div class="row mt-3">
                 <% posts.forEach(function(post){ %>
                     
-               <div class="col-lg-4 col-md-12">
+															<div class="col-lg-4 col-md-12">
+																 <h4><em><%=post.name %></em></h4>
 																			<img class='img-thumbnail' src="<%= post.image %>">
-																			<a href='<%=post.image%>'><%=post.image%></a>
+																			<a href='<%=post.image%>'>File</a>
                      <iframe class='img-thumbnail' width="560" height="315" src="https://www.youtube.com/embed/<%=post.videoLink%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                       <h4><em><%=post.name %></em></h4>
                        <hr/>
 
                         <p><%=post.description %></p>
@@ -19,7 +19,7 @@
 
 
 
-      </video>
+    
                    <p>
                        <a href="/posts/<%= post._id %>" class="btn btn-primary">More Info</a>
                    </p>
@@ -29,7 +29,7 @@
     </div>
     </div>
       
-<!--Footer-->
+
 <div class="container-fluid">
   <div class="row">
     	<div class="col-md-12">
