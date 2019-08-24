@@ -4,12 +4,12 @@
 
   <div class="container-fluid">
       <div class="row mt-3">
-                <% posts.forEach(function(post){ %>
+                <%posts.forEach(function(post){%>
                     
 															<div class="col-lg-4 col-md-12">
 																 <h4><em><%=post.postTitle %></em></h4>
 																			<img class='img-thumbnail' src="<%= post.image %>">
-																			<a href='<%=post.image%>'>File</a>
+																			<a href='<%=post.image%>'><%=post.documentTitle%></a>
                      <iframe class='img-thumbnail' width="560" height="315" src="https://www.youtube.com/embed/<%=post.videoLink%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                        <hr/>
 
