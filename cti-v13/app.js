@@ -76,7 +76,7 @@
     });
 
     //ABOU US
-    app.get('/about', middleware.isLogin ,(req, res) => {
+    app.get('/about',(req, res) => {
         res.render('about')
     })
 
