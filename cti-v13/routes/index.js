@@ -52,13 +52,14 @@ router.post('/register', upload.single('avatar'), (req, res) => {
 
   //NOTE THE WHOLE OF newUser contains the user model
   User.register(newUser, req.body.password, (err, user) => {
-    console.log('New user created', newUser)
+    
       if(err){
-          console.log('Registration Error', err.message);
+        req.flash('error', err.message)
           return res.render('register')
       }else {
-        console.log('Registered users', user)
+        
           passport.authenticate('local')(req, res, () =>{
+            req.flash('success', 'Successfully Registered')
              res.redirect('/posts')
           });
       }
@@ -68,24 +69,26 @@ router.post('/register', upload.single('avatar'), (req, res) => {
 
 //Login form
 router.get('/login', (req, res) => {
- 
+  
   res.render('login')
-  req.flash('success', 'Login successful')
+ 
 })
 
 //Login logic
 router.post('/login',passport.authenticate('local', {
-  successRedirect: '/about',
+  
+  successRedirect: '/posts',
   failureRedirect: '/login'
 }) , (req, res) => {
-  
+  req.flash('success', 'Login successful')
 });
 
 //logout route
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/posts')
+  req.flash('success', 'You have Logout successful')
+  res.redirect('/')
 })
 
 
@@ -139,7 +142,7 @@ router.get('/team', (req, res) => {
 });
 
 
-router.get('/sikadwa', (req, res) => {
+router.get('/sikadwa', middleware.isLogin, (req, res) => {
   //res.set('Content-Type', 'image/jpg')
     User.find({}, (err, allUsers) => {
         if(err){
@@ -152,7 +155,7 @@ router.get('/sikadwa', (req, res) => {
 });
 
 
-router.get('/support', (req, res) => {
+router.get('/support', middleware.isLogin, (req, res) => {
   //res.set('Content-Type', 'image/jpg')
     User.find({}, (err, allUsers) => {
         if(err){

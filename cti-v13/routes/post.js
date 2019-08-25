@@ -33,7 +33,7 @@
     //==============
     //GET FORM
     //=============
-    router.get("/new", function(req, res){
+    router.get("/new", middleware.isLogin,function(req, res){
     
         res.render('posts/new')
     });
@@ -43,7 +43,7 @@
     //INDEX PAGE -> Show all campgrounds
     //==================================
 
-    router.get('/', (req, res) => {
+    router.get('/', middleware.isLogin, (req, res) => {
     //Get All campgrounds from DB
      
     Post.find({}, (err, allPosts)=> {
@@ -90,13 +90,13 @@
       }   
 
         Post.create(req.body.post, function(err, post) {
-            console.log('POST CREATED', post)
+           
             if (err) {
             req.flash('error', err.message);
             return res.redirect('back');
             }
             req.flash('success', 'Post was created successfully');
-            res.redirect('/posts/' + post.id);
+            res.redirect('/posts');
         });
         });
     });
@@ -142,7 +142,7 @@
             if(err){
                 console.log(err)
             }else {
-            
+                req.flash('success', 'Edited successfully');
                 res.redirect('/posts/' + req.params.id)
             }
         })
