@@ -1,0 +1,132 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+    <div class="row">
+
+        </div>
+        <div class="col-md-12">
+            <div class="thumbnail">
+                <img class="img-thumbnail" src="<%= campground.image %>">
+                <div class="caption-full">
+                    <h4 class="pull-right"><%= campground.postTitle %></h4>
+                    <h4><a><%=campground.name%></a></h4>
+                    <p><%= campground.description %></p>
+                    <p>
+                        <em>Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+                      </p>
+                      <p> <a class="btn btn-large btn-warning" href="/profile/<%= campground.author.id %>">Profile</a></p>
+                  <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ){ %>
+                    <a class="btn btn-large btn-warning" href="/posts/<%= campground._id %>/edit">Edit</a>
+                    <form id="delete-form" action="/posts/<%= campground._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-large btn-danger">Delete</button>
+
+                       
+                    </form>
+                <% }%>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/posts/<%= campground._id %>/comments/new">Add New Comment</a>
+                   
+                </div>
+
+               
+                <div>
+                    <h3> <%=campground.comments.length%> : Comments</h3>
+                </div>
+                <hr>
+                <% campground.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong class='text-success'><%= comment.author.username %></strong>
+                            <p>
+                                <%= comment.text %> 
+                            </p>
+                           <!--
+                           <a class="btn btn-warning" href="/posts/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
+
+                           <form action="/posts/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" style="display: inline">
+                               <button class="btn btn-danger">Delete</button>
+                           </form>
+                          -->
+
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 footer-info">
+            <h3>CTI-Ghana</h3>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/sikadwa">Sikadwa</a></li>
+              <li><a href="/support">Support</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/Register">Register</a></li>
+              <li><a href="/">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              Accra Ghana <br>
+              Xifen-China, NY 535022<br>
+              China-Ghana <br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Emergency Support</h4>
+            <img class="img-thumbnail" src="/images/police.jpg"/>
+            <p>Our dear Brother Oscar has been arrested by Police and he needs our help. He is a dedicated person on this platform</p>
+             <a class="btn btn-danger" href="/">View his Profile</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; 2019 Copyright <strong>CTI</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+       
+        Developed by <a href="/">Emmanuel Tweneboah</a>
+      </div>
+    </div>
+  </footer>
+<% include ../partials/footer %>
