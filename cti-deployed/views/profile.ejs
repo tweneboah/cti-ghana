@@ -1,57 +1,68 @@
-<% include ../partials/header %>
+<% include partials/header %>
 
-<link rel="stylesheet" href="/stylesheets/navBar.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<div class="jumbotron text-center">
-     <div class="container">
-        <div class="row">
-           <div class="col-lg">
-              <h1>Latest Teaching resources</h1>
-    <p>Browse through the resources created by experienced teachers to facilitate your teachings. Gather all the important resources that are important to you at your own profile for quick and easy references</p> 
-    <a href="/posts/new" class="btn btn-warning">Add Post</a>
-           </div>
+  <link rel="stylesheet" href="/stylesheets/profilePage.css">
 
-           <div class="col-lg ">
-              <h1>Advertise with us</h1>
-              <img  width="300px" height="20px" class="img-thumbnail" src="/images/advert.jpg"/>
-              <hr/>
-           </div>
-        </div>
-     </div>
-  </div>
+
+
+
   
-  
-
   <div class="container-fluid">
-      <div class="row mt-3">
-                <%posts.forEach(function(post){%>
-                    
-															<div class="col-lg-4 col-md-12">
-																 <h4><em><%=post.postTitle %></em></h4>
-																			<img class='img-thumbnail' src="<%= post.image %>">
-																			<a href='<%=post.image%>'><%=post.documentTitle%></a>
-                     <iframe class='img-thumbnail' width="560" height="315" src="https://www.youtube.com/embed/<%=post.videoLink%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="fb-profile">
+        <img align="left" class="img-thumbnail " src="/images/ghana.jpg" alt="Profile image example"/>
+        <img align="left" class="fb-image-profile thumbnail img-thumbnail" src="/images/books.jpg" />
+        <div class="fb-profile-text">
+            <h1><%=user.username%></h1>
+              <p><a class="btn btn-warning" href="/posts/new">Add New Post</a></p>
+        </div>
+    </div>
+</div> 
+
+<hr/>
+<div class="container-fluid">
+  <div class="row">
+     <div class="col">
+ <h3>My Profile</h3>
+ <h4>Your total post is: <%=posts.length%></h4>
+ <hr/>
+ <p>First Name: <%=user.firstName%></p>
+ <p>Last Name: <%=user.lastName%></p>
+ <p>Email: <%=user.email%></p>
+ <p>Verified: <%=user.isVerified%></p>
+ <p>Date Joined: <%=user.dateJoined%></p>
+     </div>
+     <hr/>
+  </div>
+
+  <h3 class="text-center">My Posts</h3>
+  <hr/>
+
+
+
+    <div class="container-fluid">
+      <div class="row mt-3 text-center">
+     <% posts.forEach(function(post){ %>
+        <div class="col-lg-4">
+            <h4 class="text-center"><em><%=post.postTitle %></em></h4>
+<img class='img-thumbnail ' src="<%= post.image %>">
+
+<a href='<%=post.image%>'><%=post.documentTitle%></a>
+
+ <iframe class='img-thumbnail' width="560" height="900" src="https://www.youtube.com/embed/<%=post.videoLink%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
                        <hr/>
 
-																								<p><%=post.description %></p>
-																								<p class="text-success">Created At: <%=post.createdAt %></p>
-																
-
-
-
-
-    
-                   <p>
-                       <a href="/posts/<%= post._id %>" class="btn btn-primary">More Info</a>
-                   </p>
-
-                </div>  
+<p><%=post.description %></p>
+     <p>
+        <a href="/posts/<%= post._id %>" class="btn btn-primary">More Info</a>
+     </p>
+            </div>  
         <% }); %>
     </div>
     </div>
       
-
-				<!--==========================
+    <!--==========================
     Footer
   ============================-->
   <footer id="footer">
@@ -118,4 +129,4 @@
     </div>
   </footer>
 
-  <% include ../partials/footer %>
+  <% include partials/footer %>

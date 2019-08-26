@@ -1,57 +1,33 @@
-<% include ../partials/header %>
+<% include partials/header %>
 
-<link rel="stylesheet" href="/stylesheets/navBar.css">
 
-<div class="jumbotron text-center">
-     <div class="container">
-        <div class="row">
-           <div class="col-lg">
-              <h1>Latest Teaching resources</h1>
-    <p>Browse through the resources created by experienced teachers to facilitate your teachings. Gather all the important resources that are important to you at your own profile for quick and easy references</p> 
-    <a href="/posts/new" class="btn btn-warning">Add Post</a>
-           </div>
-
-           <div class="col-lg ">
-              <h1>Advertise with us</h1>
-              <img  width="300px" height="20px" class="img-thumbnail" src="/images/advert.jpg"/>
-              <hr/>
-           </div>
-        </div>
-     </div>
-  </div>
-  
-  
-
-  <div class="container-fluid">
+<div class="container-fluid">
       <div class="row mt-3">
-                <%posts.forEach(function(post){%>
-                    
-															<div class="col-lg-4 col-md-12">
-																 <h4><em><%=post.postTitle %></em></h4>
-																			<img class='img-thumbnail' src="<%= post.image %>">
-																			<a href='<%=post.image%>'><%=post.documentTitle%></a>
-                     <iframe class='img-thumbnail' width="560" height="315" src="https://www.youtube.com/embed/<%=post.videoLink%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                       <hr/>
+          <% users.forEach(function(user){ %>
+                <div class="col-lg-4 col-md-12">
+                   <div class="card border-0 shadow">
+                      <img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">
 
-																								<p><%=post.description %></p>
-																								<p class="text-success">Created At: <%=post.createdAt %></p>
-																
+                      <div class="card-body text-center">
+                      <h5 class="card-title mb-0"> Username: <%=user.username%></h5>
+                      <div class="card-text text-black-50">Firstname: <%=user.firstName%></div>
+                       <div class="card-text text-black-50">Lastname: <%=user.lastName%></div>
+                        <div class="card-text text-black-50">Verified: <%=user.isVerified%></div>
 
-
-
-
-    
+                      
                    <p>
-                       <a href="/posts/<%= post._id %>" class="btn btn-primary">More Info</a>
+                       <a href="/profile/<%=user.id%>" class="btn btn-primary">View my Profile</a>
                    </p>
-
+         </div>
                 </div>  
+                 </div >
         <% }); %>
     </div>
     </div>
       
 
-				<!--==========================
+
+    <!--==========================
     Footer
   ============================-->
   <footer id="footer">
@@ -118,4 +94,4 @@
     </div>
   </footer>
 
-  <% include ../partials/footer %>
+  <% include partials/footer %>

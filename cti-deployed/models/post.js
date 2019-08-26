@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 
 let postSchema = new mongoose.Schema({
-   name: String,
    image: String,
+   videoLink: String,
    description: String,
+   documentTitle: String,
+   postTitle: String,
    createdAt: {
       type: Date,
       default: Date.now()
