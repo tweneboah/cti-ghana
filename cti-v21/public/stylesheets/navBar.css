@@ -1,0 +1,35 @@
+
+
+/* nav links */
+.navbar-toggler {
+  outline: none !important;
+}
+.toggler-icon {
+  font-size: 40px;
+  font-size: 2.5rem;
+  color: #ef7998;
+}
+.nav-link {
+  color: #e0c7ce;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  font-size: 20px;
+  font-size: 1.2rem;
+}
+
+.cart-info {
+  border: 1.6px solid rgb(224, 221, 221);
+  border: 0.1rem solid rgb(224, 220, 220);
+  color: rgb(198, 223, 130);
+  border-radius: 0.25rem;
+  padding: 6.4px 9.6px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+}
+
+.navbar-background {
+  background: #CC5226
+}
+
+
+
