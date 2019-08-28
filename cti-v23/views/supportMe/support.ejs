@@ -1,0 +1,120 @@
+<% include ../partials/header %>
+
+<div class="jumbotron text-center text-white bg-danger">
+  <div class="container ">
+     <div class="row border border-warning p-4">
+        <div class="col-lg">
+           <h1>Victims</h1>
+           <p class="text-left">Victims are Our dear brothers and sisters  who has a problem that need you and me our help particulary police case</p> 
+           <h2>How to support</h2>
+           <ol class="text-left">
+             <li>Scan the QRcode and pay any amount you want to contribute</li>
+             <li>Take a screenshot of your payment</li>
+             <li>Click on help me button</li>
+             <li>Type in your message/remaarks and the amount contributed</li>
+           </ol>
+        </div>
+
+        <div class="col-lg ">
+      
+           <img  width="200px" height="20px" class="img-thumbnail" src="/images/wechat.jpeg"/>
+           <hr/>
+        </div>
+
+        
+     </div>
+     <div class="row">
+       <div class="col">
+          
+              <h3>Do you know someone who need our help? </h3>
+              <a class="btn btn-lg btn-success" href="/support/new">Add a victim now!</a>
+          
+       </div>
+    
+   </div>
+  </div>
+</div>
+
+<div class="container">
+    <div class="row">
+      <%=user._id%>
+
+        <%user.forEach((user) =>{%>
+
+      <div class="col-md-6 col-lg-4">
+              <img class="img-thumbnail" src="<%=user.image%>"/>
+              <h4> Name: <%=user.username%></h4>
+             <hr/>
+            <p><%=user.description%></p>
+            <p><a href="/victim/<%=user.id%>" class="btn btn-warning">Help me</a></p>
+         </div>
+        <%})%>
+    </div>
+</div>
+
+
+  <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+  
+            <div class="col-lg-4 col-md-6 footer-info">
+              <h3>CTI-Ghana</h3>
+              <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+            </div>
+  
+            <div class="col-lg-2 col-md-6 footer-links">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="/posts">Posts</a></li>
+                <li><a href="/sikadwa">Sikadwa</a></li>
+                <li><a href="/support">Support</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/Register">Register</a></li>
+                <li><a href="/">Privacy policy</a></li>
+              </ul>
+            </div>
+  
+            <div class="col-lg-3 col-md-6 footer-contact">
+              <h4>Contact Us</h4>
+              <p>
+                Accra Ghana <br>
+                Xifen-China, NY 535022<br>
+                China-Ghana <br>
+                <strong>Phone:</strong> +1 5589 55488 55<br>
+                <strong>Email:</strong> info@example.com<br>
+              </p>
+  
+              <div class="social-links">
+                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-3 col-md-6 footer-newsletter">
+              <h4>Emergency Support</h4>
+              <img class="img-thumbnail" src="/images/police.jpg"/>
+              <p>Our dear Brother Oscar has been arrested by Police and he needs our help. He is a dedicated person on this platform</p>
+               <a class="btn btn-danger" href="/">View his Profile</a>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="copyright">
+          &copy; 2019 Copyright <strong>CTI</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+         
+          Developed by <a href="/">Emmanuel Tweneboah</a>
+        </div>
+      </div>
+    </footer>
+
+    <% include ../partials/footer %>
