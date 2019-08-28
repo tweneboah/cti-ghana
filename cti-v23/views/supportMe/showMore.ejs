@@ -19,11 +19,12 @@
               <img class="img-thumbnail" src="<%=user.image%>"/>
              <div class="m-2">
                 <h4> Name: <%=user.username%></h4>
+                <h3>Total Contributors: <%=user.comments.length%> / <%=allUsers.length%></h3>
               <p><a href="/supportMe/<%=user.id%>/new" class="btn btn-warning">Donate</a></p>
-              <p> <%=user.description%></p>
+             
               <hr/>
              </div>
-              <h3>Total Contributors: <%=user.comments.length%> / <%=allUsers.length%></h3>
+            
                  <div>
                 <%=user.description%>
                  <hr/>

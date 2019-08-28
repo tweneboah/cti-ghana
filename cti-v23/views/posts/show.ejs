@@ -6,22 +6,29 @@
 
         </div>
         <div class="col-md-12">
+            <h4 class="pull-right"><%= campground.postTitle %></h4>
             <div class="thumbnail">
                 <img class="img-thumbnail" src="<%= campground.image %>">
+
+                <h4 class="m-2">	<a href='<%=campground.image%>'><%=campground.documentTitle%></a></h4>
                 <div class="caption-full">
-                    <h4 class="pull-right"><%= campground.postTitle %></h4>
+                  
+
+                    <iframe  width="560" height="315" src="https://www.youtube.com/embed/<%=campground.videoLink%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>
+                    <a href="/profile/<%= campground.author.id %>" class="text-success">
+                        <em>Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+                      </a>
+                      </p>
+                      <p> <a class="btn btn-large btn-warning" href="/profile/<%= campground.author.id %>">View my Profile</a></p>
                     <h4><a><%=campground.name%></a></h4>
                     <p><%= campground.description %></p>
-                    <p>
-                        <em>Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
-                      </p>
-                      <p> <a class="btn btn-large btn-warning" href="/profile/<%= campground.author.id %>">Profile</a></p>
+                   
+                      
                   <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ){ %>
-                    <a class="btn btn-large btn-warning" href="/posts/<%= campground._id %>/edit">Edit</a>
+                    <a class="btn  btn-warning" href="/posts/<%= campground._id %>/edit">Edit</a>
                     <form id="delete-form" action="/posts/<%= campground._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-large btn-danger">Delete</button>
-
-                       
+                        <button class="btn btn-danger mt-3">Delete</button>
                     </form>
                 <% }%>
                 </div>
